@@ -21,7 +21,7 @@ public class ViewController {
     }
 
     @PostMapping("/")
-    public String performSearch(@ModelAttribute("searchKeyword") SearchKeyword searchKeyword, Model model) {
+    public String performSearch(@ModelAttribute("searchKeyword") SearchKeyword searchKeyword, Model model) throws InterruptedException {
         ReactiveDataDriverContextVariable reactiveData =
                 new ReactiveDataDriverContextVariable(unsplashService.getPhotos(searchKeyword.getText()), 1);
         model.addAttribute("photos", reactiveData);

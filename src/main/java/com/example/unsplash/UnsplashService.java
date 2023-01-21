@@ -12,6 +12,7 @@ public class UnsplashService {
 
     @Autowired
     WebClient webClient;
+    Photo getResults;
 
     public Flux<Photo> getPhotos(String searchText) {
         return getTotalPages(searchText)
@@ -31,7 +32,12 @@ public class UnsplashService {
                 .map(Integer::valueOf);
     }
 
-    public Mono<UnsplashResponse> searchUnsplash(String searchText, int pageNumber) {
+    public Mono<UnsplashResponse> searchUnsplash(String searchText, int pageNumber){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
         return webClient.get()
                 .uri(uri -> uri
                         .queryParam("page", pageNumber)
@@ -40,5 +46,6 @@ public class UnsplashService {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToMono(UnsplashResponse.class);
+
     }
 }
