@@ -12,7 +12,7 @@ import java.util.List;
 public class UnsplashResponse {
 
     List<Photo> results;
-
+    private Integer total;// do we need this?
     @JsonProperty("total_pages")
     int totalPages;
 

@@ -23,10 +23,20 @@
                 <button class="btn btn-info" type="submit">Search!</button>
             </div>
         </form>
+            <legend>Picture orientation</legend>
+        <form action="checkBox" method="post">
+            <input type="checkbox" name="checkboxName"/>
+            <label >portrait</label><br>
+            <input type="checkbox" name="checkboxName">
+            <label>landscape</label><br>
+            <input type="checkbox" name="checkboxName">
+            <label>square</label><br>
+        </form>
     </div>
-    <div class="row justify-content-center" data-masonry='{"percentPosition": true, "itemSelector": ".col-6"}'>
+<!--    <div class="row justify-content-center" data-masonry='{"percentPosition": true, "itemSelector": ".col-6"}'>-->
         <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-2 d-flex justify-content-center" th:each="photo : ${photos}">
             <img class="rounded img-fluid" th:src="${photo.urls.thumb}" th:alt="${photo.description}">
+<!--            <a href = "${photo.urls.thumb} == null">Sorry, nothing has been found</a>-->
         </div>
     </div>
 </div>
