@@ -1,5 +1,6 @@
 package com.example.unsplash;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,4 +25,20 @@ public class ClientConfig {
                 .defaultHeader(HttpHeaders.AUTHORIZATION, secret)
                 .build();
     }
+
+    @Value("${search.uri_2}")
+    private URI searchUri_2;
+
+    @Value("${api.client-id_2}")
+    private String secret_2;
+
+    @Qualifier
+    @Bean
+    public WebClient webClient_2() {
+        return WebClient.builder()
+                .baseUrl(searchUri_2.toString())
+                .defaultHeader(HttpHeaders.AUTHORIZATION, secret_2)
+                .build();
+    }
+
 }

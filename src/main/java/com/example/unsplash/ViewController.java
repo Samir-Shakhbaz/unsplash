@@ -24,16 +24,15 @@ public class ViewController {
     public String performSearch(@ModelAttribute("searchKeyword") SearchKeyword searchKeyword, Model model) throws InterruptedException {
         ReactiveDataDriverContextVariable reactiveData =
                 new ReactiveDataDriverContextVariable(unsplashService.getPhotos(searchKeyword.getText()), 1);
-        reactiveData.
+
         model.addAttribute("photos", reactiveData);
         model.addAttribute("searchText", searchKeyword.getText());
-           return "index";
+           if (unsplashService.getTotalPages(searchKeyword.getText()) == null) {
+            return "error";
+        }
+        else{return "index";}
     }
 
-//      if (unsplashService.getPhotos(searchKeyword.getText()) == null) {
-//        return "error";
-//    }
-//      else{return "index";}
 
 //    @RequestMapping(value = "/" , method = RequestMethod. POST)
 //    public void checkBox(@RequestParam("checkboxName")String[] checkboxValue)
